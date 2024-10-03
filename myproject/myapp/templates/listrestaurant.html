@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block header %}Restaurant List{% endblock %}
+{% block body %}
+<h1 class="mt-5">List of Restaurants</h1>
+
+<div class="container mt-3">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Phone Number</th>
+                <th>Actions</th>  <!-- New column for actions -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for restaurant in restaurants %}
+                <tr>
+                    <td>{{ restaurant.name }}</td>
+                    <td>{{ restaurant.address }}</td>
+                    <td>{{ restaurant.phonenumber }}</td>
+                    <td>
+                        <a href="{% url 'update' restaurant.id %}" class="btn btn-warning btn-sm">Edit</a>
+                        <form action="{% url 'delete' restaurant.id %}" method="POST" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4">No restaurants available.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'add' %}" class="btn btn-primary mt-3">Add Restaurant</a>
+</div>
+
+{% endblock %}

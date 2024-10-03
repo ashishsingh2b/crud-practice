@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block header %} Welcome to crud operation project{% endblock  %}
+
+{% block body %}This is restaurant Crud
+
+<a href="{% url 'add' %}" class="btn btn-secondary mt-3">Add Restairant</a>
+<a href="{% url 'list' %}" class="btn btn-secondary mt-3">View Restaurant</a>
+
+
+{% endblock  %}

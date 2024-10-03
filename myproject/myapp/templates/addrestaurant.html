@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block header %}Add Restaurant{% endblock %}
+{% block body %}
+The page belongs to add a restaurant.
+
+<div class="container mt-5">
+    <form method="POST">  <!-- Use method="POST" instead of action="POST" -->
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type='submit' class="btn btn-primary">Submit</button>  <!-- Added a class for styling -->
+    </form>
+    <a href="{% url 'list' %}" class="btn btn-secondary mt-3">Back to List</a>
+</div>
+
+{% endblock %}
